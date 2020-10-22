@@ -15,17 +15,17 @@ function reverse {
   fi
   read -p "Enter the name of the file where you want to write result - " file
 
-    if [[ -f $file ]] && ! [[ -w $file ]]
+    if [[ -f $file ]] && ! [[ -w $file ]] #если файл существует, но в этой директории нельзя записывать
     then
     echo "Error: no permission to write in $file"
     return $?
     fi
-    if ! [[ -r "$(dirname $file)" ]]
+    if ! [[ -r "$(dirname $file)" ]] #нельзя читать в этой директории 
     then
       echo "Error: no access to read in directory of $file"
       return $?
     fi
-    if ! [[ -w "$(dirname $file)" ]] && ! [[ -f "$file" ]]
+    if ! [[ -w "$(dirname $file)" ]] && ! [[ -f "$file" ]] #если файл не существует, то есть мы хотим создать файл, но в этой директории нельзя создавать файлы
     then
     echo "Error: no permission to create in this directory"
     return $?
@@ -52,17 +52,17 @@ function reverse {
       echo "Error: no file permissions $1" #проверка на наличие прав для чтения
       exit -3
     fi
- if [[ -f $2 ]] && ! [[ -w $2 ]]
+ if [[ -f $2 ]] && ! [[ -w $2 ]] #если файл существует, но в него нельзя записывать
     then
     echo "Error: no permission to write in $file"
     return $?
-    fi
-    if ! [[ -r "$(dirname $2)" ]]
+    fi 
+    if ! [[ -r "$(dirname $2)" ]] #нельзя читать в этой директории 
     then
       echo "Error: no access to read in directory of $2"
       return $?
     fi
-    if ! [[ -w "$(dirname $2)" ]] && ! [[ -f "$2" ]]
+    if ! [[ -w "$(dirname $2)" ]] && ! [[ -f "$2" ]] #если файл не существует, то есть мы хотим создать файл, но в этой директории нельзя создавать файлы
     then
     echo "Error: no permission to create in this directory"
     return $?
