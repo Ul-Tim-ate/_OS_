@@ -11,7 +11,7 @@ Pid_of_MaxSize=$pid
 fi
 done
 top -p $Pid_of_MaxSize -b -n 1 > temp6.txt
-vmSize=$(cat task6.txt | grep $Pid_of_MaxSize | awk '{print $5 }')
+vmSize=$(cat temp6.txt | grep $Pid_of_MaxSize | awk '{print $5 }')
 echo "Pid:$Pid_of_MaxSize MEM in /proc $MaxSize MEM in top $vmSize" > task6.txt
 rm temp6.txt
 
